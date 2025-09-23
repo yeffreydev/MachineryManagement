@@ -1,0 +1,21 @@
+<div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+  <img [src]="machinery.imageUrl" [alt]="machinery.name" class="w-full h-48 object-cover">
+  <div class="p-4">
+    <div class="flex justify-between items-start">
+      <h3 class="text-lg font-semibold text-gray-800">{{ machinery.name }}</h3>
+      <span class="px-2 py-1 text-xs font-semibold rounded-full" [ngClass]="getStatusClass(machinery.status)">
+        {{ getStatusText(machinery.status) }}
+      </span>
+    </div>
+    <p class="text-gray-600 text-sm mt-1">{{ machinery.type }} - {{ machinery.model }}</p>
+    <p class="text-gray-500 text-sm mt-2">
+      <i class="fas fa-map-marker-alt mr-1"></i>
+      {{ machinery.location }}
+    </p>
+    <div class="mt-4 flex justify-between items-center">
+      <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 text-sm">
+        Ver Detalles
+      </button>
+    </div>
+  </div>
+</div>
