@@ -1,15 +1,23 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DatePipe, CommonModule } from '@angular/common';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Maintenance } from '../../../models/maintenance.model';
 
 @Component({
   selector: 'app-maintenance-table',
-  imports: [DatePipe, CommonModule],
+  imports: [DatePipe, CommonModule, FontAwesomeModule],
   templateUrl: './maintenance-table.component.html',
   styleUrls: ['./maintenance-table.component.css']
 })
 export class MaintenanceTableComponent {
   @Input() maintenances: Maintenance[] = [];
+  @Output() editMaintenance = new EventEmitter<Maintenance>();
+  @Output() deleteMaintenance = new EventEmitter<Maintenance>();
+
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faEdit, faTrash);
+  }
 
   getMaintenanceTypeClass(type: string): string {
     switch (type) {
@@ -31,5 +39,13 @@ export class MaintenanceTableComponent {
       default:
         return type;
     }
+  }
+
+  onEditMaintenance(maintenance: Maintenance): void {
+    this.editMaintenance.emit(maintenance);
+  }
+
+  onDeleteMaintenance(maintenance: Maintenance): void {
+    this.deleteMaintenance.emit(maintenance);
   }
 }

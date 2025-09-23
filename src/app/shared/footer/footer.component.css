@@ -1,0 +1,4 @@
+footer {
+  background-color: rgba(5, 25, 60, 0.05) !important; /* Very light version of primary color */
+  border-top-color: rgba(5, 25, 60, 0.1) !important;
+}

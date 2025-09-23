@@ -38,6 +38,7 @@ export class MaintenanceFormComponent implements OnInit {
   ngOnInit(): void {
     this.loadMachinery();
     this.maintenanceId = this.route.snapshot.paramMap.get('id');
+    console.log('Maintenance ID from route:', this.maintenanceId);
     if (this.maintenanceId) {
       this.isEditMode = true;
       this.loadMaintenance(this.maintenanceId);
@@ -51,15 +52,23 @@ export class MaintenanceFormComponent implements OnInit {
   }
 
   loadMaintenance(id: string): void {
-    this.maintenanceService.getMaintenanceById(id).subscribe(maintenance => {
-      if (maintenance) {
-        this.maintenanceForm.patchValue({
-          machineryId: maintenance.machineryId,
-          maintenanceType: maintenance.maintenanceType,
-          date: maintenance.date.toISOString().split('T')[0],
-          technician: maintenance.technician,
-          description: maintenance.description
-        });
+    this.maintenanceService.getMaintenanceById(id).subscribe({
+      next: (maintenance) => {
+        console.log('Maintenance data loaded:', maintenance);
+        if (maintenance) {
+          this.maintenanceForm.patchValue({
+            machineryId: maintenance.machineryId,
+            maintenanceType: maintenance.maintenanceType,
+            date: maintenance.date instanceof Date 
+              ? maintenance.date.toISOString().split('T')[0] 
+              : new Date(maintenance.date).toISOString().split('T')[0],
+            technician: maintenance.technician,
+            description: maintenance.description
+          });
+        }
+      },
+      error: (error) => {
+        console.error('Error loading maintenance:', error);
       }
     });
   }
@@ -77,12 +86,22 @@ export class MaintenanceFormComponent implements OnInit {
       };
 
       if (this.isEditMode) {
-        this.maintenanceService.updateMaintenance(maintenance).subscribe(() => {
-          this.router.navigate(['/maintenance']);
+        this.maintenanceService.updateMaintenance(maintenance).subscribe({
+          next: () => {
+            this.router.navigate(['/maintenance']);
+          },
+          error: (error) => {
+            console.error('Error updating maintenance:', error);
+          }
         });
       } else {
-        this.maintenanceService.addMaintenance(maintenance).subscribe(() => {
-          this.router.navigate(['/maintenance']);
+        this.maintenanceService.addMaintenance(maintenance).subscribe({
+          next: () => {
+            this.router.navigate(['/maintenance']);
+          },
+          error: (error) => {
+            console.error('Error adding maintenance:', error);
+          }
         });
       }
     }

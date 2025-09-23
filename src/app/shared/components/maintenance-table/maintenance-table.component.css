@@ -1,0 +1,7 @@
+button.text-blue-500 {
+  color: var(--secondary-color) !important;
+}
+
+button.text-blue-500:hover {
+  color: rgb(230, 138, 5) !important; /* Slightly darker orange */
+}

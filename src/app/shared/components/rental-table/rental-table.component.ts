@@ -1,15 +1,23 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DatePipe, CommonModule } from '@angular/common';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Rental } from '../../../models/rental.model';
 
 @Component({
   selector: 'app-rental-table',
-  imports: [DatePipe, CommonModule],
+  imports: [DatePipe, CommonModule, FontAwesomeModule],
   templateUrl: './rental-table.component.html',
   styleUrls: ['./rental-table.component.css']
 })
 export class RentalTableComponent {
   @Input() rentals: Rental[] = [];
+  @Output() editRental = new EventEmitter<Rental>();
+  @Output() deleteRental = new EventEmitter<Rental>();
+
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faEdit, faTrash);
+  }
 
   getStatusClass(status: string): string {
     switch (status) {
@@ -35,5 +43,13 @@ export class RentalTableComponent {
       default:
         return status;
     }
+  }
+
+  onEditRental(rental: Rental): void {
+    this.editRental.emit(rental);
+  }
+
+  onDeleteRental(rental: Rental): void {
+    this.deleteRental.emit(rental);
   }
 }

@@ -1,8 +1,8 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-2xl font-bold text-gray-800">Inventario de Maquinaria</h1>
-    <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300">
-      <i class="fas fa-plus mr-2"></i>
+    <button routerLink="/machinery/new" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300">
+      <fa-icon [icon]="'plus'" class="mr-2"></fa-icon>
       Agregar Maquinaria
     </button>
   </div>
@@ -46,7 +46,7 @@
 
   <!-- Empty State -->
   <div *ngIf="filteredMachinery.length === 0" class="bg-white rounded-lg shadow-md p-12 text-center">
-    <i class="fas fa-search text-gray-400 text-4xl mb-4"></i>
+    <fa-icon [icon]="'search'" class="text-gray-400 text-4xl mb-4"></fa-icon>
     <h3 class="text-lg font-medium text-gray-900 mb-1">No se encontraron máquinas</h3>
     <p class="text-gray-500">Intenta ajustar tus filtros de búsqueda</p>
   </div>

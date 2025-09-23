@@ -1,1 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --primary-color: rgb(5, 25, 60);
+  --secondary-color: rgb(255, 153, 6);
+}
+
+/* Global consistency styles */
+a {
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+button:focus, input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 1px var(--secondary-color);
+}

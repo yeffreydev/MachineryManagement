@@ -1,0 +1,12 @@
+button[type="submit"] {
+  background-color: var(--secondary-color) !important;
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(230, 138, 5) !important; /* Slightly darker orange */
+}
+
+input:focus, select:focus {
+  border-color: var(--secondary-color) !important;
+  box-shadow: 0 0 0 1px var(--secondary-color) !important;
+}

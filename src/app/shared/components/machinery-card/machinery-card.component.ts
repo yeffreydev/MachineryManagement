@@ -1,15 +1,22 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { Machinery } from '../../../models/machinery.model';
 
 @Component({
   selector: 'app-machinery-card',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, FontAwesomeModule],
   templateUrl: './machinery-card.component.html',
   styleUrls: ['./machinery-card.component.css']
 })
 export class MachineryCardComponent {
   @Input() machinery!: Machinery;
+
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faMapMarkerAlt);
+  }
 
   getStatusClass(status: string): string {
     switch (status) {

@@ -1,0 +1,21 @@
+nav {
+  background-color: var(--primary-color) !important;
+}
+
+nav a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+nav a:hover {
+  color: white;
+  border-color: var(--secondary-color);
+}
+
+nav a.router-link-active {
+  color: white;
+  border-color: var(--secondary-color);
+}
+
+nav span, nav button {
+  color: white;
+}

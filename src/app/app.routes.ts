@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { MachineryListComponent } from './machinery/machinery-list/machinery-list.component';
 import { MachineryDetailComponent } from './machinery/machinery-detail/machinery-detail.component';
+import { MachineryFormComponent } from './machinery/machinery-form/machinery-form.component';
 import { RentalListComponent } from './rental/rental-list/rental-list.component';
 import { RentalFormComponent } from './rental/rental-form/rental-form.component';
 import { MaintenanceListComponent } from './maintenance/maintenance-list/maintenance-list.component';
@@ -16,6 +17,10 @@ export const routes: Routes = [
   {
     path: 'machinery',
     component: MachineryListComponent
+  },
+  {
+    path: 'machinery/new',
+    component: MachineryFormComponent
   },
   {
     path: 'machinery/:id',

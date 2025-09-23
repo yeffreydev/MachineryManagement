@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Machinery } from '../../models/machinery.model';
 import { MachineryService } from '../../services/machinery.service';
 import { MachineryCardComponent } from '../../shared/components/machinery-card/machinery-card.component';
 
 @Component({
   selector: 'app-machinery-list',
-  imports: [RouterLink, FormsModule, CommonModule, MachineryCardComponent],
+  imports: [RouterLink, FormsModule, CommonModule, MachineryCardComponent, FontAwesomeModule],
   templateUrl: './machinery-list.component.html',
   styleUrls: ['./machinery-list.component.css']
 })
@@ -18,7 +20,9 @@ export class MachineryListComponent implements OnInit {
   searchQuery: string = '';
   statusFilter: string = 'all';
 
-  constructor(private machineryService: MachineryService) {}
+  constructor(private machineryService: MachineryService, library: FaIconLibrary) {
+    library.addIcons(faPlus, faSearch);
+  }
 
   ngOnInit(): void {
     this.loadMachinery();

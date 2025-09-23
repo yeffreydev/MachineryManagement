@@ -1,0 +1,36 @@
+<div *ngIf="isVisible" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50" id="delete-modal">
+  <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+    <div class="mt-3">
+      <div class="flex items-center justify-center">
+        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+          <fa-icon [icon]="'exclamation-triangle'" class="text-red-600"></fa-icon>
+        </div>
+      </div>
+      <div class="mt-4 text-center">
+        <h3 class="text-lg font-medium text-gray-900" id="modal-title">
+          {{ title }}
+        </h3>
+        <div class="mt-2 px-7 py-3">
+          <p class="text-sm text-gray-500">
+            {{ message }}
+            <span *ngIf="itemName" class="font-medium text-gray-700">{{ itemName }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center space-x-4 mt-6">
+      <button
+        (click)="onCancel()"
+        class="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition-colors duration-300"
+      >
+        Cancelar
+      </button>
+      <button
+        (click)="onConfirm()"
+        class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors duration-300"
+      >
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+button {
+  background-color: var(--secondary-color) !important;
+}
+
+button:hover {
+  background-color: rgb(230, 138, 5) !important; /* Slightly darker orange */
+}

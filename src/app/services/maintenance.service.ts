@@ -73,4 +73,13 @@ export class MaintenanceService {
     }
     return of(false);
   }
+
+  deleteMaintenance(id: string): Observable<boolean> {
+    const index = this.maintenanceList.findIndex(m => m.id === id);
+    if (index !== -1) {
+      this.maintenanceList.splice(index, 1);
+      return of(true);
+    }
+    return of(false);
+  }
 }

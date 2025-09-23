@@ -1,0 +1,176 @@
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Nueva Maquinaria</h1>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-md p-6">
+    <form [formGroup]="machineryForm" (ngSubmit)="onSubmit()">
+      <div class="grid grid-cols-1 gap-6">
+        <!-- Name -->
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            [class.border-red-500]="machineryForm.get('name')?.invalid && machineryForm.get('name')?.touched"
+          >
+          <div *ngIf="machineryForm.get('name')?.invalid && machineryForm.get('name')?.touched" class="mt-1 text-sm text-red-600">
+            El nombre es requerido
+          </div>
+        </div>
+
+        <!-- Type -->
+        <div>
+          <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Tipo</label>
+          <input
+            type="text"
+            id="type"
+            formControlName="type"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            [class.border-red-500]="machineryForm.get('type')?.invalid && machineryForm.get('type')?.touched"
+          >
+          <div *ngIf="machineryForm.get('type')?.invalid && machineryForm.get('type')?.touched" class="mt-1 text-sm text-red-600">
+            El tipo es requerido
+          </div>
+        </div>
+
+        <!-- Model -->
+        <div>
+          <label for="model" class="block text-sm font-medium text-gray-700 mb-1">Modelo</label>
+          <input
+            type="text"
+            id="model"
+            formControlName="model"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            [class.border-red-500]="machineryForm.get('model')?.invalid && machineryForm.get('model')?.touched"
+          >
+          <div *ngIf="machineryForm.get('model')?.invalid && machineryForm.get('model')?.touched" class="mt-1 text-sm text-red-600">
+            El modelo es requerido
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div>
+          <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+          <select
+            id="status"
+            formControlName="status"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="available">Disponible</option>
+            <option value="rented">Alquilada</option>
+            <option value="maintenance">Mantenimiento</option>
+          </select>
+        </div>
+
+        <!-- Location -->
+        <div>
+          <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Ubicación</label>
+          <input
+            type="text"
+            id="location"
+            formControlName="location"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            [class.border-red-500]="machineryForm.get('location')?.invalid && machineryForm.get('location')?.touched"
+          >
+          <div *ngIf="machineryForm.get('location')?.invalid && machineryForm.get('location')?.touched" class="mt-1 text-sm text-red-600">
+            La ubicación es requerida
+          </div>
+        </div>
+
+        <!-- Specifications Section -->
+        <div class="border-t pt-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">Especificaciones</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Power -->
+            <div>
+              <label for="power" class="block text-sm font-medium text-gray-700 mb-1">Potencia</label>
+              <input
+                type="text"
+                id="power"
+                formControlName="power"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                [class.border-red-500]="machineryForm.get('power')?.invalid && machineryForm.get('power')?.touched"
+              >
+              <div *ngIf="machineryForm.get('power')?.invalid && machineryForm.get('power')?.touched" class="mt-1 text-sm text-red-600">
+                La potencia es requerida
+              </div>
+            </div>
+
+            <!-- Capacity -->
+            <div>
+              <label for="capacity" class="block text-sm font-medium text-gray-700 mb-1">Capacidad</label>
+              <input
+                type="text"
+                id="capacity"
+                formControlName="capacity"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                [class.border-red-500]="machineryForm.get('capacity')?.invalid && machineryForm.get('capacity')?.touched"
+              >
+              <div *ngIf="machineryForm.get('capacity')?.invalid && machineryForm.get('capacity')?.touched" class="mt-1 text-sm text-red-600">
+                La capacidad es requerida
+              </div>
+            </div>
+
+            <!-- Weight -->
+            <div>
+              <label for="weight" class="block text-sm font-medium text-gray-700 mb-1">Peso</label>
+              <input
+                type="text"
+                id="weight"
+                formControlName="weight"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                [class.border-red-500]="machineryForm.get('weight')?.invalid && machineryForm.get('weight')?.touched"
+              >
+              <div *ngIf="machineryForm.get('weight')?.invalid && machineryForm.get('weight')?.touched" class="mt-1 text-sm text-red-600">
+                El peso es requerido
+              </div>
+            </div>
+
+            <!-- Dimensions -->
+            <div>
+              <label for="dimensions" class="block text-sm font-medium text-gray-700 mb-1">Dimensiones</label>
+              <input
+                type="text"
+                id="dimensions"
+                formControlName="dimensions"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                [class.border-red-500]="machineryForm.get('dimensions')?.invalid && machineryForm.get('dimensions')?.touched"
+              >
+              <div *ngIf="machineryForm.get('dimensions')?.invalid && machineryForm.get('dimensions')?.touched" class="mt-1 text-sm text-red-600">
+                Las dimensiones son requeridas
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image URL -->
+        <div>
+          <label for="imageUrl" class="block text-sm font-medium text-gray-700 mb-1">URL de Imagen</label>
+          <input
+            type="url"
+            id="imageUrl"
+            formControlName="imageUrl"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            [class.border-red-500]="machineryForm.get('imageUrl')?.invalid && machineryForm.get('imageUrl')?.touched"
+          >
+          <div *ngIf="machineryForm.get('imageUrl')?.invalid && machineryForm.get('imageUrl')?.touched" class="mt-1 text-sm text-red-600">
+            La URL de imagen es requerida
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="mt-8 flex justify-end space-x-4">
+        <button type="button" (click)="onCancel()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors duration-300">
+          Cancelar
+        </button>
+        <button type="submit" [disabled]="machineryForm.invalid" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+          Registrar Maquinaria
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

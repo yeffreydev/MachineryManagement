@@ -20,7 +20,7 @@ export class MachineryService {
         weight: '21,000 kg',
         dimensions: '9.5m x 3m x 3.2m'
       },
-      imageUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      imageUrl: '/images/excavadora-hidraulica.jpg'
     },
     {
       id: '2',
@@ -35,7 +35,7 @@ export class MachineryService {
         weight: '15,000 kg',
         dimensions: '5.2m x 2.8m x 3.1m'
       },
-      imageUrl: 'https://images.unsplash.com/photo-1591370874773-6702e8f12fd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      imageUrl: '/images/tractor-oruga.jpg'
     },
     {
       id: '3',
@@ -50,7 +50,7 @@ export class MachineryService {
         weight: '8,000 kg',
         dimensions: '6.8m x 2.4m x 2.8m'
       },
-      imageUrl: 'https://images.unsplash.com/photo-1605729715874-43eff9b8d8c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      imageUrl: '/images/retroexcavadora.jpg'
     },
     {
       id: '4',
@@ -65,7 +65,7 @@ export class MachineryService {
         weight: '3,200 kg',
         dimensions: '3.5m x 1.8m x 2.1m'
       },
-      imageUrl: 'https://images.unsplash.com/photo-1595353540865-64f8ef1d007b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      imageUrl: '/images/minicargadora.jpg'
     },
     {
       id: '5',
@@ -80,7 +80,7 @@ export class MachineryService {
         weight: '5,800 kg',
         dimensions: '8.5m x 2.3m x 2.5m'
       },
-      imageUrl: 'https://images.unsplash.com/photo-1605256680140-96d3b0b0a0c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      imageUrl: '/images/montacargas-telescopico.jpg'
     },
     {
       id: '6',
@@ -95,7 +95,7 @@ export class MachineryService {
         weight: '1,500 kg',
         dimensions: '2.2m x 1.2m x 1.3m'
       },
-      imageUrl: 'https://images.unsplash.com/photo-1605256680140-96d3b0b0a0c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      imageUrl: '/images/compactador-suelos.png'
     }
   ];
 

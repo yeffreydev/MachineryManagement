@@ -9,11 +9,11 @@
     </div>
     <p class="text-gray-600 text-sm mt-1">{{ machinery.type }} - {{ machinery.model }}</p>
     <p class="text-gray-500 text-sm mt-2">
-      <i class="fas fa-map-marker-alt mr-1"></i>
+      <fa-icon [icon]="'map-marker-alt'" class="mr-1"></fa-icon>
       {{ machinery.location }}
     </p>
     <div class="mt-4 flex justify-between items-center">
-      <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 text-sm">
+      <button [routerLink]="['/machinery', machinery.id]" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 text-sm">
         Ver Detalles
       </button>
     </div>

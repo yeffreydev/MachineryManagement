@@ -12,6 +12,7 @@ import { User } from '../../models/user.model';
 })
 export class NavbarComponent implements OnInit {
   currentUser: User | null = null;
+  isMobileMenuOpen: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -25,6 +26,14 @@ export class NavbarComponent implements OnInit {
     this.authService.logout().subscribe(() => {
       this.router.navigate(['/auth/login']);
     });
+  }
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
   }
 
   getRoleText(role: string): string {
