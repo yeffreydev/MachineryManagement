@@ -38,12 +38,10 @@ export class NavbarComponent implements OnInit {
 
   getRoleText(role: string): string {
     switch (role) {
-      case 'admin':
+      case 'ADMIN':
         return 'Administrador';
-      case 'technician':
-        return 'Técnico';
-      case 'client':
-        return 'Cliente';
+      case 'USER':
+        return 'Usuario';
       default:
         return role;
     }

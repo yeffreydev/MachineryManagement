@@ -1,0 +1,87 @@
+<div class="home-landing">
+  <!-- Hero Section -->
+  <section class="hero-banner">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">Sistema de Gestión de Maquinaria</h1>
+      <p class="hero-subtitle">Tecnología de vanguardia para el control total de tu flota</p>
+      <div class="hero-buttons">
+        <button class="btn-hero primary" (click)="verInventarioCompleto()">
+          Ver Inventario
+        </button>
+        <button class="btn-hero secondary" (click)="scrollToFeatures()">
+          Conocer Más
+        </button>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Desliza para descubrir</span>
+      <div class="arrow-down">↓</div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <h2 class="section-title">Potencia tu operación</h2>
+      <p class="section-subtitle">Herramientas profesionales para la gestión integral de maquinaria</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Control Total</h3>
+          <p>Monitoreo en tiempo real de toda tu flota de maquinaria</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3>Mantenimiento Predictivo</h3>
+          <p>Programa y gestiona el mantenimiento preventivo</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Acceso Móvil</h3>
+          <p>Gestiona tu inventario desde cualquier dispositivo</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>Gestión de Alquileres</h3>
+          <p>Control completo de contratos y pagos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Machinery Section -->
+  <section class="machinery-section">
+    <div class="container">
+      <h2 class="section-title">Nuestra Flota Disponible</h2>
+      <p class="section-subtitle">Equipos de última generación listos para alquilar</p>
+
+      <div class="machinery-grid">
+        <div
+          *ngFor="let maquinaria of maquinarias"
+          class="machinery-card"
+          (click)="irADetalle(maquinaria.id)"
+        >
+          <img
+            [src]="maquinaria.imageUrl"
+            [alt]="maquinaria.name"
+            class="machinery-image"
+          />
+          <div class="machinery-info">
+            <h3 class="machinery-name">{{ maquinaria.name }}</h3>
+            <p class="machinery-model">{{ maquinaria.model }}</p>
+            <p class="machinery-type">{{ maquinaria.type }}</p>
+            <p class="machinery-status">
+              Estado:
+              <span class="status-available">Disponible</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
