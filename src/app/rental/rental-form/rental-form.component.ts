@@ -28,7 +28,6 @@ export class RentalFormComponent implements OnInit {
   ) {
     this.rentalForm = this.fb.group({
       machineryId: ['', Validators.required],
-      clientId: ['', Validators.required],
       clientName: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
@@ -57,7 +56,6 @@ export class RentalFormComponent implements OnInit {
       if (rental) {
         this.rentalForm.patchValue({
           machineryId: rental.machineryId,
-          clientId: rental.clientId,
           clientName: rental.clientName,
           startDate: rental.startDate.toISOString().split('T')[0],
           endDate: rental.endDate.toISOString().split('T')[0],
@@ -74,7 +72,6 @@ export class RentalFormComponent implements OnInit {
       const rental: Rental = {
         id: this.rentalId || Math.random().toString(36).substring(2, 9),
         machineryId: formData.machineryId,
-        clientId: formData.clientId,
         clientName: formData.clientName,
         startDate: new Date(formData.startDate),
         endDate: new Date(formData.endDate),

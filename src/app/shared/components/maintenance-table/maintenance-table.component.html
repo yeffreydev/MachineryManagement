@@ -2,23 +2,33 @@
   <table class="min-w-full bg-white rounded-lg overflow-hidden">
     <thead class="bg-gray-100">
       <tr>
+        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">ID Maquinaria</th>
         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Tipo</th>
         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Fecha</th>
         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Técnico</th>
         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Descripción</th>
+        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Costo</th>
+        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Estado</th>
         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700">Acciones</th>
       </tr>
     </thead>
     <tbody class="divide-y divide-gray-200">
       <tr *ngFor="let maintenance of maintenances" class="hover:bg-gray-50">
+        <td class="py-3 px-4 text-sm text-gray-700">{{ maintenance.machineryId }}</td>
         <td class="py-3 px-4">
-          <span class="px-2 py-1 text-xs font-semibold rounded-full" [ngClass]="getMaintenanceTypeClass(maintenance.maintenanceType)">
-            {{ getMaintenanceTypeText(maintenance.maintenanceType) }}
+          <span class="px-2 py-1 text-xs font-semibold rounded-full" [ngClass]="getMaintenanceTypeClass(maintenance.tipo)">
+            {{ getMaintenanceTypeText(maintenance.tipo) }}
           </span>
         </td>
-        <td class="py-3 px-4 text-sm text-gray-700">{{ maintenance.date | date:'dd/MM/yyyy' }}</td>
-        <td class="py-3 px-4 text-sm text-gray-700">{{ maintenance.technician }}</td>
-        <td class="py-3 px-4 text-sm text-gray-700">{{ maintenance.description }}</td>
+        <td class="py-3 px-4 text-sm text-gray-700">{{ maintenance.fecha | date:'dd/MM/yyyy' }}</td>
+        <td class="py-3 px-4 text-sm text-gray-700">{{ maintenance.tecnico }}</td>
+        <td class="py-3 px-4 text-sm text-gray-700">{{ maintenance.descripcion }}</td>
+        <td class="py-3 px-4 text-sm text-gray-700">{{ maintenance.costo | currency:'USD':'symbol':'1.2-2' }}</td>
+        <td class="py-3 px-4 text-sm text-gray-700">
+          <span class="px-2 py-1 text-xs font-semibold rounded-full" [ngClass]="getStatusClass(maintenance.estado)">
+            {{ maintenance.estado }}
+          </span>
+        </td>
         <td class="py-3 px-4">
           <button (click)="onEditMaintenance(maintenance)" class="text-blue-500 hover:text-blue-700 mr-2">
             <fa-icon [icon]="'edit'"></fa-icon>

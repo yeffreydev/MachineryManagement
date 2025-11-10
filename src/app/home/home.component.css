@@ -1,6 +1,9 @@
 .home-landing {
   width: 100%;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .container {
@@ -232,4 +235,85 @@
 .status-available {
   color: #4caf50;
   font-weight: 600;
+}
+
+.quotation-section {
+  padding: 100px 0;
+  background: #ffffff;
+}
+
+.quotation-content {
+  text-align: center;
+}
+
+.btn-quotation {
+  background: #25d366;
+  color: white;
+  border: none;
+  padding: 18px 45px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-quotation:hover {
+  background: #128c7e;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+}
+
+.btn-quotation span {
+  font-size: 1.5rem;
+}
+
+.footer {
+  background: #1e3a5f;
+  color: white;
+  padding: 60px 0 20px;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  color: #ff9800;
+}
+
+.footer-section p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+}
+
+.social-link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: #ff9800;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
 }

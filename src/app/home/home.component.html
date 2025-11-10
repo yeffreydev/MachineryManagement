@@ -3,8 +3,8 @@
   <section class="hero-banner">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1 class="hero-title">Sistema de Gestión de Maquinaria</h1>
-      <p class="hero-subtitle">Tecnología de vanguardia para el control total de tu flota</p>
+      <h1 class="hero-title">T&G Servicios Generales SRL</h1>
+      <p class="hero-subtitle">Pagina de presentacion de flota</p>
       <div class="hero-buttons">
         <button class="btn-hero primary" (click)="verInventarioCompleto()">
           Ver Inventario
@@ -20,68 +20,146 @@
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="features-section" id="features">
-    <div class="container">
-      <h2 class="section-title">Potencia tu operación</h2>
-      <p class="section-subtitle">Herramientas profesionales para la gestión integral de maquinaria</p>
+ <!-- Features Section -->
+<section class="features-section" id="features">
+  <div class="container">
+    <h2 class="section-title">Potencia tu operación</h2>
+    <p class="section-subtitle">Herramientas profesionales para la gestión integral de maquinaria</p>
 
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <h3>Control Total</h3>
-          <p>Monitoreo en tiempo real de toda tu flota de maquinaria</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Misión</h3>
+        <p>Comprometidos con brindar soluciones eficientes y confiables en el manejo de maquinaria pesada.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🌟</div>
+        <h3>Visión</h3>
+        <p>Ser líderes en el sector ofreciendo innovación, calidad y excelencia operativa.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💼</div>
+        <h3>Cotización</h3>
+        <p>Solicita y gestiona tus cotizaciones de maquinaria de forma rápida y sencilla.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">ℹ️</div>
+        <h3>Información</h3>
+        <p>Accede a datos detallados sobre nuestros servicios, maquinaria y políticas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quotation Section -->
+<section class="quotation-section">
+  <div class="container">
+    <h2 class="section-title" style="color: #1e3a5f;">Cotiza con nosotros</h2>
+    <p class="section-subtitle" style="color: #666;">Obtén una cotización personalizada para tus necesidades de maquinaria</p>
+    <div class="quotation-content">
+      <button class="btn-quotation" (click)="cotizar()">
+        <span>📱</span> Contactar por WhatsApp
+      </button>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Stats Section -->
+  <!-- <section class="stats-section ">
+    <div class="container bg-slate-200 rounded-lg">
+      <div class="stats-grid flex justify-items-center">
+        <div class="stat-item">
+          <div class="stat-number">{{ maquinarias.length }}+</div>
+          <div class="stat-label">Equipos Gestionados</div>
         </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🔧</div>
-          <h3>Mantenimiento Predictivo</h3>
-          <p>Programa y gestiona el mantenimiento preventivo</p>
+        <div class="stat-item">
+          <div class="stat-number">{{ getMaquinariasPorEstado('Disponible') }}</div>
+          <div class="stat-label">Disponibles Ahora</div>
         </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">📱</div>
-          <h3>Acceso Móvil</h3>
-          <p>Gestiona tu inventario desde cualquier dispositivo</p>
+        <div class="stat-item">
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label">Tiempo Activo</div>
         </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">💰</div>
-          <h3>Gestión de Alquileres</h3>
-          <p>Control completo de contratos y pagos</p>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Soporte Técnico</div>
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <!-- Machinery Section -->
-  <section class="machinery-section">
-    <div class="container">
-      <h2 class="section-title">Nuestra Flota Disponible</h2>
-      <p class="section-subtitle">Equipos de última generación listos para alquilar</p>
 
-      <div class="machinery-grid">
-        <div
-          *ngFor="let maquinaria of maquinarias"
-          class="machinery-card"
-          (click)="irADetalle(maquinaria.id)"
-        >
-          <img
-            [src]="maquinaria.imageUrl"
-            [alt]="maquinaria.name"
-            class="machinery-image"
-          />
-          <div class="machinery-info">
-            <h3 class="machinery-name">{{ maquinaria.name }}</h3>
-            <p class="machinery-model">{{ maquinaria.model }}</p>
-            <p class="machinery-type">{{ maquinaria.type }}</p>
-            <p class="machinery-status">
-              Estado:
-              <span class="status-available">Disponible</span>
-            </p>
-          </div>
+  <div>
+    <h2 class="section-title">Nuestra Flota</h2>
+      <p class="section-subtitle">Equipos de última generación</p>
+  </div>
+
+  <!-- <div class="flex justify-center mt-8 mb-4">
+  <div class="bg-white shadow-lg rounded-2xl overflow-hidden w-64 transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+    <img
+      class="w-full h-40 object-cover"
+      src="/images/compactador-suelos.png"
+      alt="Compactador de suelos"
+    />
+    <div class="p-4 text-center">
+      <h3 class="text-lg font-semibold text-gray-800 mb-1">Compactador de suelos</h3>
+      <p class="text-sm text-gray-500 mb-3">Estado: <span class="text-green-600 font-medium">Dispo</span></p>
+      
+    </div>
+  </div>
+</div> -->
+
+
+<div class="flex justify-center mt-8 mb-4">
+  <div
+    class="bg-white shadow-lg rounded-2xl overflow-hidden w-64 transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+    (click)="irADetalle()"
+  >
+    <img
+      class="w-full h-40 object-cover"
+      src="/images/compactador-suelos.png"
+      alt="Compactador de suelos"
+    />
+    <div class="p-4 text-center">
+      <h3 class="text-lg font-semibold text-gray-800 mb-1">Compactador de suelos</h3>
+      <p class="text-sm text-gray-500 mb-3">
+        Estado:
+        <span class="text-green-600 font-medium">Disponible</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>T&G Servicios Generales SRL</h4>
+        <p>Especialistas en alquiler y gestión de maquinaria pesada.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>Email: info@tyservicios.com</p>
+        <p>Teléfono: +51 123 456 789</p>
+        <p>Dirección: Lima, Perú</p>
+      </div>
+      <div class="footer-section">
+        <h4>Síguenos</h4>
+        <div class="social-links">
+          <a href="#" class="social-link">Facebook</a>
+          <a href="#" class="social-link">LinkedIn</a>
+          <a href="#" class="social-link">WhatsApp</a>
         </div>
       </div>
     </div>
-  </section>
+    <div class="footer-bottom">
+      <p>&copy; 2023 T&G Servicios Generales SRL. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
 </div>

@@ -28,6 +28,11 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'machinery/:id/edit',
+    component: MachineryFormComponent,
+    canActivate: [authGuard]
+  },
+  {
     path: 'machinery/:id',
     component: MachineryDetailComponent,
     canActivate: [authGuard]

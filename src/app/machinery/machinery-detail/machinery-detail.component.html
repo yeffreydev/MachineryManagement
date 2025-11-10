@@ -11,7 +11,7 @@
       <li aria-current="page">
         <div class="flex items-center">
           <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
-          <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{{ machinery.name }}</span>
+          <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2">{{ machinery.modelo }}</span>
         </div>
       </li>
     </ol>
@@ -21,66 +21,81 @@
   <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
     <div class="md:flex">
       <div class="md:flex-shrink-0 md:w-1/3">
-        <img class="h-64 w-full object-cover md:h-full md:w-full" [src]="machinery.imageUrl" [alt]="machinery.name">
+        <img class="h-64 w-full object-cover md:h-full md:w-full" [src]="'http://localhost:8080' + machinery.imagen" [alt]="machinery.modelo">
       </div>
       <div class="p-8">
         <div class="flex justify-between items-start">
           <div>
-            <h1 class="text-2xl font-bold text-gray-800">{{ machinery.name }}</h1>
-            <p class="mt-2 text-gray-600">{{ machinery.type }} - {{ machinery.model }}</p>
+            <h1 class="text-2xl font-bold text-gray-800">{{ machinery.modelo }}</h1>
+              <p class="mt-2 text-gray-600">{{ machinery.tipo }} - {{ machinery.modelo }}</p>
           </div>
           <span class="px-3 py-1 text-sm font-semibold rounded-full" [ngClass]="{
-            'bg-green-100 text-green-800': machinery.status === 'available',
-            'bg-blue-100 text-blue-800': machinery.status === 'rented',
-            'bg-yellow-100 text-yellow-800': machinery.status === 'maintenance'
+            'bg-green-100 text-green-800': machinery.estado === 'disponible',
+            'bg-blue-100 text-blue-800': machinery.estado === 'alquilada',
+            'bg-yellow-100 text-yellow-800': machinery.estado === 'mantenimiento'
           }">
-            {{ getStatusText(machinery.status) }}
+            {{ getStatusText(machinery.estado) }}
           </span>
         </div>
         <div class="mt-6">
           <h2 class="text-lg font-semibold text-gray-800">Especificaciones</h2>
           <dl class="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div class="border border-gray-200 rounded-lg p-4">
+            <div class="border border-gray-200 rounded-lg p-4" *ngIf="machinery.potencia">
               <dt class="text-sm font-medium text-gray-500">Potencia</dt>
-              <dd class="mt-1 text-sm text-gray-900">{{ machinery.specifications.power }}</dd>
+              <dd class="mt-1 text-sm text-gray-900">{{ machinery.potencia }}</dd>
             </div>
-            <div class="border border-gray-200 rounded-lg p-4">
+            <div class="border border-gray-200 rounded-lg p-4" *ngIf="machinery.capacidad">
               <dt class="text-sm font-medium text-gray-500">Capacidad</dt>
-              <dd class="mt-1 text-sm text-gray-900">{{ machinery.specifications.capacity }}</dd>
+              <dd class="mt-1 text-sm text-gray-900">{{ machinery.capacidad }}</dd>
             </div>
-            <div class="border border-gray-200 rounded-lg p-4">
+            <div class="border border-gray-200 rounded-lg p-4" *ngIf="machinery.peso">
               <dt class="text-sm font-medium text-gray-500">Peso</dt>
-              <dd class="mt-1 text-sm text-gray-900">{{ machinery.specifications.weight }}</dd>
+              <dd class="mt-1 text-sm text-gray-900">{{ machinery.peso }}</dd>
             </div>
-            <div class="border border-gray-200 rounded-lg p-4">
+            <div class="border border-gray-200 rounded-lg p-4" *ngIf="machinery.dimensiones">
               <dt class="text-sm font-medium text-gray-500">Dimensiones</dt>
-              <dd class="mt-1 text-sm text-gray-900">{{ machinery.specifications.dimensions }}</dd>
+              <dd class="mt-1 text-sm text-gray-900">{{ machinery.dimensiones }}</dd>
             </div>
           </dl>
+          <div *ngIf="!machinery.potencia && !machinery.capacidad && !machinery.peso && !machinery.dimensiones" class="mt-4 text-center py-4 text-gray-500">
+            No hay especificaciones registradas para esta maquinaria.
+          </div>
         </div>
         <div class="mt-6">
           <h2 class="text-lg font-semibold text-gray-800">Ubicación</h2>
           <p class="mt-1 text-sm text-gray-900">
             <i class="fas fa-map-marker-alt mr-2 text-gray-500"></i>
-            {{ machinery.location }}
+            {{ machinery.ubicacion }}
           </p>
         </div>
         <div class="mt-8 flex space-x-4">
-          <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300">
+          <button class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300" [routerLink]="['/machinery', machinery.id, 'edit']">
             <i class="fas fa-edit mr-2"></i>
             Editar
           </button>
-          <button class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors duration-300">
+          <button class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors duration-300" (click)="onDelete()">
+            <i class="fas fa-trash mr-2"></i>
+            Eliminar
+          </button>
+          <button class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors duration-300" routerLink="/maintenance/new">
             <i class="fas fa-calendar-plus mr-2"></i>
             Programar Mantenimiento
           </button>
-          <button class="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition-colors duration-300">
+          <button class="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition-colors duration-300" routerLink="/rental/new">
             <i class="fas fa-file-contract mr-2"></i>
             Alquilar
           </button>
         </div>
       </div>
     </div>
+  
+    <!-- Delete Confirmation Modal -->
+    <app-delete-confirmation-modal
+      [isVisible]="showDeleteModal"
+      [itemName]="machinery?.modelo"
+      (confirmDelete)="confirmDelete()"
+      (cancelDelete)="cancelDelete()">
+    </app-delete-confirmation-modal>
   </div>
 
   <!-- Maintenance History -->
@@ -103,20 +118,20 @@
             <tr *ngFor="let maintenance of maintenances">
               <td class="px-6 py-4 whitespace-nowrap">
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" [ngClass]="{
-                  'bg-green-100 text-green-800': maintenance.maintenanceType === 'preventive',
-                  'bg-red-100 text-red-800': maintenance.maintenanceType === 'corrective'
+                  'bg-green-100 text-green-800': maintenance.tipo === 'preventive',
+                  'bg-red-100 text-red-800': maintenance.tipo === 'corrective'
                 }">
-                  {{ getMaintenanceTypeText(maintenance.maintenanceType) }}
+                  {{ getMaintenanceTypeText(maintenance.tipo) }}
                 </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {{ maintenance.date | date:'dd/MM/yyyy' }}
+                {{ maintenance.fecha | date:'dd/MM/yyyy' }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                {{ maintenance.technician }}
+                {{ maintenance.tecnico }}
               </td>
               <td class="px-6 py-4 text-sm text-gray-500">
-                {{ maintenance.description }}
+                {{ maintenance.descripcion }}
               </td>
             </tr>
           </tbody>

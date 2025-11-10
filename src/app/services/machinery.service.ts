@@ -1,138 +1,47 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Machinery } from '../models/machinery.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MachineryService {
-  private machineryList: Machinery[] = [
-    {
-      id: '1',
-      name: 'Excavadora Hidráulica',
-      type: 'Excavadora',
-      model: 'CAT 320D',
-      status: 'available',
-      location: 'Almacén Central',
-      specifications: {
-        power: '120 HP',
-        capacity: '1.2 m³',
-        weight: '21,000 kg',
-        dimensions: '9.5m x 3m x 3.2m'
-      },
-      imageUrl: '/images/excavadora-hidraulica.jpg'
-    },
-    {
-      id: '2',
-      name: 'Tractor de Oruga',
-      type: 'Tractor',
-      model: 'John Deere 7R',
-      status: 'rented',
-      location: 'Sitio Norte',
-      specifications: {
-        power: '200 HP',
-        capacity: 'N/A',
-        weight: '15,000 kg',
-        dimensions: '5.2m x 2.8m x 3.1m'
-      },
-      imageUrl: '/images/tractor-oruga.jpg'
-    },
-    {
-      id: '3',
-      name: 'Retroexcavadora',
-      type: 'Excavadora',
-      model: 'JCB 3CX',
-      status: 'maintenance',
-      location: 'Taller Mecánico',
-      specifications: {
-        power: '75 HP',
-        capacity: '0.7 m³',
-        weight: '8,000 kg',
-        dimensions: '6.8m x 2.4m x 2.8m'
-      },
-      imageUrl: '/images/retroexcavadora.jpg'
-    },
-    {
-      id: '4',
-      name: 'Minicargadora',
-      type: 'Cargadora',
-      model: 'Bobcat S70',
-      status: 'available',
-      location: 'Almacén Central',
-      specifications: {
-        power: '50 HP',
-        capacity: '0.8 m³',
-        weight: '3,200 kg',
-        dimensions: '3.5m x 1.8m x 2.1m'
-      },
-      imageUrl: '/images/minicargadora.jpg'
-    },
-    {
-      id: '5',
-      name: 'Montacargas Telescópico',
-      type: 'Montacargas',
-      model: 'Genie Z60',
-      status: 'available',
-      location: 'Almacén Norte',
-      specifications: {
-        power: '30 HP',
-        capacity: '250 kg',
-        weight: '5,800 kg',
-        dimensions: '8.5m x 2.3m x 2.5m'
-      },
-      imageUrl: '/images/montacargas-telescopico.jpg'
-    },
-    {
-      id: '6',
-      name: 'Compactador de Suelos',
-      type: 'Compactador',
-      model: 'Wacker Neuson',
-      status: 'rented',
-      location: 'Sitio Sur',
-      specifications: {
-        power: '25 HP',
-        capacity: 'N/A',
-        weight: '1,500 kg',
-        dimensions: '2.2m x 1.2m x 1.3m'
-      },
-      imageUrl: '/images/compactador-suelos.png'
-    }
-  ];
+  private apiUrl = 'http://localhost:8080/api/maquinas';
+
+  constructor(private http: HttpClient) {}
 
   getAllMachinery(): Observable<Machinery[]> {
-    return of(this.machineryList);
+    return this.http.get<Machinery[]>(this.apiUrl);
   }
 
-  getMachineryById(id: string): Observable<Machinery | undefined> {
-    const machinery = this.machineryList.find(m => m.id === id);
-    return of(machinery);
+  getMachineryById(id: string): Observable<Machinery> {
+    return this.http.get<Machinery>(`${this.apiUrl}/${id}`);
   }
 
   getMachineryByStatus(status: string): Observable<Machinery[]> {
-    const filteredMachinery = this.machineryList.filter(m => m.status === status);
-    return of(filteredMachinery);
+    return this.http.get<Machinery[]>(`${this.apiUrl}?estado=${status}`);
   }
 
   searchMachinery(query: string): Observable<Machinery[]> {
-    const filteredMachinery = this.machineryList.filter(m => 
-      m.name.toLowerCase().includes(query.toLowerCase()) || 
-      m.type.toLowerCase().includes(query.toLowerCase()) ||
-      m.model.toLowerCase().includes(query.toLowerCase())
-    );
-    return of(filteredMachinery);
+    return this.http.get<Machinery[]>(`${this.apiUrl}?search=${query}`);
   }
 
-  addMachinery(machinery: Machinery): Observable<boolean> {
-    this.machineryList.push(machinery);
-    return of(true);
+  addMachinery(machinery: Machinery): Observable<Machinery> {
+    return this.http.post<Machinery>(this.apiUrl, machinery);
   }
 
-  updateMachinery(machinery: Machinery): Observable<boolean> {
-    const index = this.machineryList.findIndex(m => m.id === machinery.id);
-    if (index !== -1) {
-      this.machineryList[index] = machinery;
-      return of(true);
-    }
-    return of(false);
+  updateMachinery(id: string, machinery: Machinery): Observable<Machinery> {
+    return this.http.put<Machinery>(`${this.apiUrl}/${id}`, machinery);
+  }
+
+  deleteMachinery(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  uploadImage(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post('http://localhost:8080/api/images/upload', formData);
   }
 }

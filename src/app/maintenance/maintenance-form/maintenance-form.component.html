@@ -19,7 +19,7 @@
           >
             <option value="">Seleccionar maquinaria</option>
             <option *ngFor="let machinery of machineryList" [value]="machinery.id">
-              {{ machinery.name }} - {{ machinery.model }}
+              {{ machinery.modelo }} - {{ machinery.tipo }}
             </option>
           </select>
           <div *ngIf="maintenanceForm.get('machineryId')?.invalid && maintenanceForm.get('machineryId')?.touched" class="mt-1 text-sm text-red-600">

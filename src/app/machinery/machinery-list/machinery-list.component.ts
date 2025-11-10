@@ -41,15 +41,15 @@ export class MachineryListComponent implements OnInit {
     // Apply search filter
     if (this.searchQuery) {
       filtered = filtered.filter(m =>
-        m.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        m.type.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        m.model.toLowerCase().includes(this.searchQuery.toLowerCase())
+        m.modelo.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        m.tipo.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        m.codigo.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
 
     // Apply status filter
     if (this.statusFilter !== 'all') {
-      filtered = filtered.filter(m => m.status === this.statusFilter);
+      filtered = filtered.filter(m => m.estado === this.statusFilter);
     }
 
     this.filteredMachinery = filtered;
@@ -66,9 +66,9 @@ export class MachineryListComponent implements OnInit {
   getStatusOptions(): { value: string, label: string }[] {
     return [
       { value: 'all', label: 'Todos' },
-      { value: 'available', label: 'Disponible' },
-      { value: 'rented', label: 'Alquilada' },
-      { value: 'maintenance', label: 'Mantenimiento' }
+      { value: 'disponible', label: 'Disponible' },
+      { value: 'alquilada', label: 'Alquilada' },
+      { value: 'mantenimiento', label: 'Mantenimiento' }
     ];
   }
 }

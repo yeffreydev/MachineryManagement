@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   loadMachinery() {
-    this.machineryService.getMachineryByStatus('available').subscribe(machinery => {
+    this.machineryService.getMachineryByStatus('disponible').subscribe(machinery => {
       this.maquinarias = machinery;
     });
   }
@@ -47,7 +47,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  irADetalle(id: string) {
+  irADetalle() {
     this.router.navigate(['/auth/login']);
+  }
+
+  cotizar() {
+    const whatsappUrl = 'https://wa.me/51923291773?text=Hola,%20me%20gustaría%20cotizar%20una%20maquinaria';
+    window.open(whatsappUrl, '_blank');
   }
 }

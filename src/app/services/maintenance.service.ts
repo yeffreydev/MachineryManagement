@@ -1,85 +1,47 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Maintenance } from '../models/maintenance.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MaintenanceService {
-  private maintenanceList: Maintenance[] = [
-    {
-      id: '1',
-      machineryId: '3',
-      maintenanceType: 'preventive',
-      date: new Date('2023-04-15'),
-      technician: 'Carlos Rodríguez',
-      description: 'Cambio de aceite y revisión general'
-    },
-    {
-      id: '2',
-      machineryId: '2',
-      maintenanceType: 'corrective',
-      date: new Date('2023-03-22'),
-      technician: 'María González',
-      description: 'Reparación del sistema hidráulico'
-    },
-    {
-      id: '3',
-      machineryId: '1',
-      maintenanceType: 'preventive',
-      date: new Date('2023-05-10'),
-      technician: 'Juan Pérez',
-      description: 'Inspección de componentes y lubricación'
-    },
-    {
-      id: '4',
-      machineryId: '3',
-      maintenanceType: 'corrective',
-      date: new Date('2023-01-15'),
-      technician: 'Carlos Rodríguez',
-      description: 'Reemplazo de filtro de aire y aceite'
-    }
-  ];
+  private apiUrl = 'http://localhost:8080/api/mantenimientos';
+
+  constructor(private http: HttpClient) {}
 
   getAllMaintenance(): Observable<Maintenance[]> {
-    return of(this.maintenanceList);
+    return this.http.get<Maintenance[]>(this.apiUrl).pipe(
+      map((maintenances: any[]) => maintenances.map(m => ({
+        ...m,
+        fecha: new Date(m.fecha)
+      })))
+    );
   }
 
-  getMaintenanceById(id: string): Observable<Maintenance | undefined> {
-    const maintenance = this.maintenanceList.find(m => m.id === id);
-    return of(maintenance);
+  getMaintenanceById(id: string): Observable<Maintenance> {
+    return this.http.get<Maintenance>(`${this.apiUrl}/${id}`);
   }
 
   getMaintenanceByMachineryId(machineryId: string): Observable<Maintenance[]> {
-    const filteredMaintenance = this.maintenanceList.filter(m => m.machineryId === machineryId);
-    return of(filteredMaintenance);
+    return this.http.get<Maintenance[]>(`${this.apiUrl}/maquina/${machineryId}`);
   }
 
   getMaintenanceByType(type: string): Observable<Maintenance[]> {
-    const filteredMaintenance = this.maintenanceList.filter(m => m.maintenanceType === type);
-    return of(filteredMaintenance);
+    return this.http.get<Maintenance[]>(`${this.apiUrl}/tipo/${type}`);
   }
 
-  addMaintenance(maintenance: Maintenance): Observable<boolean> {
-    this.maintenanceList.push(maintenance);
-    return of(true);
+  addMaintenance(maintenance: Maintenance): Observable<Maintenance> {
+    return this.http.post<Maintenance>(this.apiUrl, maintenance);
   }
 
-  updateMaintenance(maintenance: Maintenance): Observable<boolean> {
-    const index = this.maintenanceList.findIndex(m => m.id === maintenance.id);
-    if (index !== -1) {
-      this.maintenanceList[index] = maintenance;
-      return of(true);
-    }
-    return of(false);
+  updateMaintenance(maintenance: Maintenance): Observable<Maintenance> {
+    return this.http.put<Maintenance>(`${this.apiUrl}/${maintenance.id}`, maintenance);
   }
 
-  deleteMaintenance(id: string): Observable<boolean> {
-    const index = this.maintenanceList.findIndex(m => m.id === id);
-    if (index !== -1) {
-      this.maintenanceList.splice(index, 1);
-      return of(true);
-    }
-    return of(false);
+  deleteMaintenance(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

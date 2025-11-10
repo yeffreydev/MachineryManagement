@@ -33,9 +33,17 @@ export class MaintenanceListComponent implements OnInit {
   }
 
   loadMaintenances(): void {
-    this.maintenanceService.getAllMaintenance().subscribe(maintenances => {
-      this.maintenances = maintenances;
-      this.applyFilters();
+    this.maintenanceService.getAllMaintenance().subscribe({
+      next: (data) => {
+        this.maintenances = data;
+        this.applyFilters();
+      },
+      error: (error) => {
+        console.error('Error loading maintenances:', error);
+        // Fallback to empty array if API fails
+        this.maintenances = [];
+        this.applyFilters();
+      }
     });
   }
 
@@ -43,7 +51,7 @@ export class MaintenanceListComponent implements OnInit {
     if (this.typeFilter === 'all') {
       this.filteredMaintenances = [...this.maintenances];
     } else {
-      this.filteredMaintenances = this.maintenances.filter(m => m.maintenanceType === this.typeFilter);
+      this.filteredMaintenances = this.maintenances.filter(m => m.tipo === this.typeFilter);
     }
   }
 

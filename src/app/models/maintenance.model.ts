@@ -1,8 +1,10 @@
 export interface Maintenance {
   id: string;
   machineryId: string;
-  maintenanceType: 'preventive' | 'corrective';
-  date: Date;
-  technician: string;
-  description: string;
+  tipo: string;
+  fecha: Date;
+  tecnico: string;
+  descripcion: string;
+  costo: number;
+  estado: string;
 }

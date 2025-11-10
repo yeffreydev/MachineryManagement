@@ -31,7 +31,7 @@
     [isVisible]="showDeleteModal"
     [title]="'Eliminar Mantenimiento'"
     [message]="'¿Estás seguro de que deseas eliminar el mantenimiento de '"
-    [itemName]="maintenanceToDelete?.description"
+    [itemName]="maintenanceToDelete?.descripcion"
     (confirmDelete)="confirmDelete()"
     (cancelDelete)="closeDeleteModal()">
   </app-delete-confirmation-modal>

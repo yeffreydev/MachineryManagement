@@ -20,11 +20,11 @@ export class MachineryCardComponent {
 
   getStatusClass(status: string): string {
     switch (status) {
-      case 'available':
+      case 'disponible':
         return 'bg-green-100 text-green-800';
-      case 'rented':
+      case 'alquilada':
         return 'bg-blue-100 text-blue-800';
-      case 'maintenance':
+      case 'mantenimiento':
         return 'bg-yellow-100 text-yellow-800';
       default:
         return 'bg-gray-100 text-gray-800';
@@ -33,14 +33,21 @@ export class MachineryCardComponent {
 
   getStatusText(status: string): string {
     switch (status) {
-      case 'available':
+      case 'disponible':
         return 'Disponible';
-      case 'rented':
+      case 'alquilada':
         return 'Alquilada';
-      case 'maintenance':
+      case 'mantenimiento':
         return 'Mantenimiento';
       default:
         return status;
     }
+  }
+
+  getImageUrl(): string {
+    if (this.machinery.imagen) {
+      return `http://localhost:8080${this.machinery.imagen}`;
+    }
+    return '/images/default-machinery.jpg'; // fallback image
   }
 }
